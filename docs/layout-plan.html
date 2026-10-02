@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>滨海芦苇湿地·重工业厂区 — 场景布局方案图</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #eef0ec; color: #2a2c2b; font-family: "PingFang SC","Microsoft YaHei",Arial,sans-serif; padding: 20px; }
+  h1 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .sub { font-size: 12px; color: #6b706d; margin-bottom: 14px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 18px; }
+  .card { flex: 1 1 520px; min-width: 0; background: #fafbf8; border: 1px solid #e2e4de; border-radius: 12px; padding: 14px; }
+  .card h2 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  svg { width: 100%; height: auto; display: block; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: #4a4e4b; margin-top: 8px; }
+  .lg { display: inline-flex; align-items: center; gap: 5px; }
+  .lg i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; border: 0.5px solid rgba(0,0,0,0.15); }
+  .note { font-size: 11px; color: #8a8f8b; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>场景布局方案（示意）</h1>
+<div class="sub">滨海芦苇湿地远眺重工业厂区 · 微缩三维景观 · 正方形底座 200×200 · 俯视平面 + 纵向剖面</div>
+<div class="grid">
+
+  <div class="card">
+    <h2>俯视平面布局（世界坐标 x·z，Y 为高度）</h2>
+    <svg viewBox="0 0 620 636" role="img" aria-label="俯视平面布局图">
+      <!-- 底座外框 -->
+      <rect x="10" y="10" width="600" height="600" fill="#232626" stroke="#0e0f0f" stroke-width="2"/>
+      <!-- 厂区工业地坪 z -96~-68 -->
+      <rect x="10" y="22" width="600" height="84" fill="#5c615e"/>
+      <!-- 湿地主水面 z -68~86 -->
+      <rect x="10" y="106" width="600" height="462" fill="#56675f"/>
+      <!-- 水面微纹理 -->
+      <path d="M10 180 q40 -6 80 2 q50 8 90 0 q60 -10 120 0 q80 12 140 2 q50 -8 90 0 q60 8 120 0 q50 -6 80 -2" stroke="#4d5d55" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M10 300 q70 8 130 -2 q60 -10 110 0 q80 10 150 -2 q60 -8 110 0 q60 8 100 2" stroke="#4d5d55" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M10 430 q50 -6 90 2 q70 8 120 -2 q80 -10 150 0 q70 10 140 -2 q60 -8 100 2" stroke="#4d5d55" stroke-width="2" fill="none" opacity="0.5"/>
+      <!-- 湿地岛屿（9-12 座不规则泥丘） -->
+      <path d="M120 210 C150 200 175 210 185 232 C195 254 180 272 150 274 C122 276 105 258 108 234 C110 220 114 216 120 210 Z" fill="#717569"/>
+      <path d="M250 250 C282 240 305 252 310 276 C315 300 292 316 262 314 C232 312 222 292 228 270 C233 254 240 254 250 250 Z" fill="#6d7165"/>
+      <path d="M160 380 C188 368 212 376 220 396 C228 416 210 432 182 432 C154 432 142 416 146 398 C149 386 152 384 160 380 Z" fill="#74786c"/>
+      <path d="M300 420 C330 408 356 418 362 440 C368 462 346 478 318 478 C290 478 278 460 282 440 C285 428 288 424 300 420 Z" fill="#6f7367"/>
+      <path d="M430 250 C458 240 482 250 488 272 C494 294 472 308 444 308 C416 308 404 290 408 270 C411 258 420 254 430 250 Z" fill="#72766a"/>
+      <path d="M430 420 C460 410 484 420 490 442 C496 464 474 478 446 478 C418 478 404 460 408 440 C411 428 418 424 430 420 Z" fill="#767a6e"/>
+      <path d="M90 520 C118 508 142 516 150 538 C158 560 138 576 108 576 C78 576 66 558 70 540 C73 528 78 524 90 520 Z" fill="#6b6f63"/>
+      <path d="M300 560 C330 548 356 558 362 580 C368 602 346 616 318 616 C290 616 278 598 282 580 C285 568 288 564 300 560 Z" fill="#717569"/>
+      <path d="M470 540 C496 530 516 540 522 560 C528 580 510 594 484 594 C458 594 448 578 452 560 C455 548 458 544 470 540 Z" fill="#74786c"/>
+      <!-- 近岸泥堤 z 82~86 -->
+      <rect x="10" y="552" width="600" height="16" fill="#787c70"/>
+      <!-- 厂区隔离泥堤 z -68~-62 -->
+      <rect x="10" y="106" width="600" height="12" fill="#787c70"/>
+      <!-- 桥梁桥面 z 86~100 -->
+      <rect x="10" y="568" width="600" height="42" fill="#878d89"/>
+      <!-- 护栏线 -->
+      <line x1="10" y1="568" x2="610" y2="568" stroke="#5e6460" stroke-width="4"/>
+      <!-- 相机位置 -->
+      <polygon points="330,592 322,586 338,586" fill="#3a4a44"/>
+      <text x="344" y="590" font-size="12" fill="#37423e">相机机位（高架桥面）</text>
+      <!-- 厂区构件示意 -->
+      <g fill="#9aa09c">
+        <circle cx="120" cy="52" r="7"/><circle cx="180" cy="58" r="6"/><circle cx="300" cy="46" r="8"/><circle cx="420" cy="54" r="6"/><circle cx="500" cy="44" r="7"/>
+      </g>
+      <g fill="#6f746f">
+        <circle cx="240" cy="40" r="10"/><circle cx="520" cy="88" r="9"/>
+      </g>
+      <g fill="#8b918c">
+        <rect x="70" y="72" width="10" height="10"/><rect x="90" y="72" width="10" height="10"/><rect x="110" y="72" width="10" height="10"/>
+        <rect x="340" y="74" width="10" height="10"/><rect x="360" y="74" width="10" height="10"/>
+        <rect x="440" y="70" width="10" height="10"/><rect x="460" y="70" width="10" height="10"/><rect x="480" y="70" width="10" height="10"/>
+      </g>
+      <g fill="#a7ada9">
+        <rect x="160" y="26" width="46" height="14"/><rect x="400" y="24" width="56" height="14"/><rect x="560" y="56" width="40" height="14"/>
+      </g>
+      <g stroke="#4e5551" stroke-width="3" fill="none">
+        <line x1="40" y1="40" x2="600" y2="40"/>
+        <line x1="40" y1="58" x2="600" y2="58"/>
+        <line x1="40" y1="76" x2="600" y2="76"/>
+      </g>
+      <line x1="40" y1="94" x2="600" y2="94" stroke="#3f4541" stroke-width="5"/>
+      <g fill="#3f4541">
+        <circle cx="130" cy="94" r="3"/><circle cx="250" cy="94" r="3"/><circle cx="370" cy="94" r="3"/><circle cx="490" cy="94" r="3"/>
+      </g>
+      <!-- 芦苇带示意 -->
+      <g fill="none" stroke="#4c574e" stroke-width="2">
+        <path d="M60 118 l0 -8 M80 116 l0 -10 M100 118 l0 -7 M160 112 l2 -11 M200 114 l0 -9 M260 110 l-2 -12 M320 116 l1 -8 M380 114 l0 -10 M450 112 l-1 -11 M520 116 l0 -8 M570 114 l1 -9"/>
+        <path d="M80 552 l0 -8 M140 550 l2 -10 M220 552 l0 -7 M300 550 l-2 -11 M380 552 l1 -8 M460 550 l0 -10 M540 552 l-1 -7"/>
+      </g>
+      <!-- 方向与坐标 -->
+      <text x="20" y="620" font-size="12" fill="#9aa09c">x −100</text>
+      <text x="560" y="620" font-size="12" fill="#9aa09c">x +100</text>
+      <text x="596" y="96" font-size="12" fill="#c9cfcb">−Z 远（厂区）</text>
+      <text x="596" y="560" font-size="12" fill="#c9cfcb">+Z 近（桥梁）</text>
+      <text x="16" y="18" font-size="12" fill="#c9cfcb">Z 刻度：−96 ~ −68（厂区）· −68 ~ +86（湿地）· +86 ~ +100（桥梁）</text>
+    </svg>
+    <div class="legend">
+      <span class="lg"><i style="background:#232626"></i>底座（纯色）</span>
+      <span class="lg"><i style="background:#56675f"></i>主水面（暗青绿）</span>
+      <span class="lg"><i style="background:#717569"></i>湿地岛屿</span>
+      <span class="lg"><i style="background:#787c70"></i>泥堤/泥滩</span>
+      <span class="lg"><i style="background:#5c615e"></i>厂区地坪</span>
+      <span class="lg"><i style="background:#878d89"></i>桥梁桥面</span>
+      <span class="lg"><i style="background:#9aa09c"></i>烟囱</span>
+      <span class="lg"><i style="background:#6f746f"></i>冷却塔</span>
+      <span class="lg"><i style="background:#8b918c"></i>储罐/塔器</span>
+      <span class="lg"><i style="background:#a7ada9"></i>厂房</span>
+      <span class="lg"><i style="background:none;border:2px solid #4e5551"></i>管廊</span>
+      <span class="lg"><i style="background:#3f4541"></i>栈桥</span>
+    </div>
+    <div class="note">示意：俯视结构非精确测量；岛屿为手绘不规则泥丘示意，实际由噪声位移生成 9~12 座。</div>
+  </div>
+
+  <div class="card">
+    <h2>纵向剖面（近景 → 远景，Y 高度示意）</h2>
+    <svg viewBox="0 0 620 250" role="img" aria-label="纵向剖面图">
+      <!-- 地面基准线 -->
+      <line x1="30" y1="180" x2="590" y2="180" stroke="#9aa09c" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="34" y="176" font-size="11" fill="#6b706d">Y=0（泥滩基底）</text>
+      <!-- 桥梁 -->
+      <g>
+        <rect x="40" y="140" width="70" height="40" fill="#878d89" stroke="#5e6460"/>
+        <rect x="40" y="134" width="8" height="10" fill="#5e6460"/>
+        <text x="48" y="194" font-size="11" fill="#4a4e4b">高架桥面 Y≈5.4</text>
+        <text x="150" y="150" font-size="11" fill="#4a4e4b">护栏 1.15</text>
+      </g>
+      <!-- 水面 -->
+      <rect x="130" y="176" width="300" height="4" fill="#56675f"/>
+      <text x="240" y="196" font-size="11" fill="#4a4e4b">主水面 Y=0.16（浑浊·涟漪·反射）</text>
+      <!-- 岛屿 -->
+      <path d="M240 176 C260 168 280 164 300 166 C320 168 330 172 340 176 Z" fill="#717569"/>
+      <text x="252" y="160" font-size="11" fill="#4a4e4b">岛屿 0.45~1.05</text>
+      <!-- 泥裙 -->
+      <path d="M224 180 C260 176 320 176 356 180 Z" fill="#6a6e62" opacity="0.8"/>
+      <text x="356" y="176" font-size="11" fill="#4a4e4b">水下泥裙</text>
+      <!-- 隔离泥堤 -->
+      <rect x="430" y="172" width="30" height="8" fill="#787c70"/>
+      <text x="428" y="166" font-size="11" fill="#4a4e4b">泥堤 Y≈0.35（芦苇带）</text>
+      <!-- 厂区地坪 -->
+      <rect x="468" y="176" width="120" height="4" fill="#5c615e"/>
+      <text x="480" y="200" font-size="11" fill="#4a4e4b">厂区地坪 Y=0.5</text>
+      <!-- 烟囱与冷却塔 -->
+      <rect x="500" y="120" width="14" height="56" fill="#9aa09c"/>
+      <path d="M540 176 L544 140 L548 176 Z" fill="#8b918c"/>
+      <rect x="556" y="140" width="8" height="36" fill="#9aa09c"/>
+      <path d="M500 96 q3 -8 7 0 M500 102 q3 -7 7 0" stroke="#c9cfcb" stroke-width="2" fill="none" opacity="0.8"/>
+      <text x="486" y="114" font-size="11" fill="#4a4e4b">烟囱 16~38</text>
+      <text x="584" y="150" font-size="11" fill="#4a4e4b">冷却塔 26~30</text>
+      <text x="500" y="216" font-size="11" fill="#6b706d">烟气缓升横漂 · 薄雾空气透视</text>
+      <!-- 薄雾层 -->
+      <rect x="30" y="166" width="560" height="2" fill="#b6bfb9" opacity="0.6"/>
+      <rect x="30" y="158" width="560" height="2" fill="#c2cac4" opacity="0.4"/>
+      <text x="560" y="170" font-size="11" fill="#8a8f8b">薄雾层</text>
+      <!-- 视线 -->
+      <line x1="100" y1="120" x2="505" y2="120" stroke="#3a4a44" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="240" y="112" font-size="11" fill="#37423e">视线（从桥面远眺）</text>
+    </svg>
+    <div class="note">示意：高度非等比压缩，仅表达层位关系。</div>
+  </div>
+
+</div>
+</body>
+</html>

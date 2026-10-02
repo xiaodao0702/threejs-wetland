@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>导出 GLB</title>
+<style>body{font-family:sans-serif;background:#222;color:#ddd;padding:20px;font-size:14px}
+#log{white-space:pre-wrap;line-height:1.6}</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+</head>
+<body>
+<div id="scene-container"></div>
+<div id="log">启动中…</div>
+<script type="module" src="./js/main.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFExporter } from './vendor/exporters/GLTFExporter.js';
+import { mergeGeometries } from './vendor/utils2/BufferGeometryUtils.js';
+
+const log = document.getElementById('log');
+const out = [];
+function p(s){ out.push(s); log.textContent = out.join('\n'); }
+
+(async () => {
+  for (let i = 0; i < 900; i++) {
+    if (globalThis.__SCENE__) break;
+    await new Promise(r => setTimeout(r, 100));
+  }
+  const S = globalThis.__SCENE__;
+  if (!S) { p('错误：未取得场景'); return; }
+  const { scene } = S;
+  p('场景已就绪，开始处理…');
+
+  const DENSITY = 0.3;          // 实例采样（VRChat 性能）
+  const removeList = [];
+  const buckets = new Map();     // mat.uuid -> { mat, geos }
+  let instSamples = 0;
+
+  scene.updateMatrixWorld(true);
+
+  scene.traverse(obj => {
+    if (!obj.visible) return;
+
+    // 粒子（烟/雾）与玻璃层：直接丢弃
+    if (obj.isPoints) { removeList.push(obj); return; }
+
+    // 自定义 ShaderMaterial 的网格：替换为近似 PBR 材质
+    if (obj.isMesh && obj.material && obj.material.isShaderMaterial) {
+      const old = obj.material;
+      const isWater = /water/i.test(old.name || '') || (old.uniforms && old.uniforms.deep);
+      if (isWater) {
+        obj.material = new THREE.MeshStandardMaterial({
+          color: 0x4a5b53, roughness: 0.35, metalness: 0.1,
+          transparent: true, opacity: 0.82, side: THREE.DoubleSide,
+        });
+      } else {
+        obj.material = new THREE.MeshStandardMaterial({ color: 0x8a8f8a, roughness: 0.9 });
+      }
+      return;
+    }
+
+    if (obj.isInstancedMesh) {
+      const mat = Array.isArray(obj.material) ? obj.material[0] : obj.material;
+      const geo = obj.geometry;
+      if (!buckets.has(mat.uuid)) buckets.set(mat.uuid, { mat, geos: [] });
+      const bucket = buckets.get(mat.uuid);
+      const m = new THREE.Matrix4();
+      const step = Math.max(1, Math.round(1 / DENSITY));
+      for (let i = 0; i < obj.count; i += step) {
+        obj.getMatrixAt(i, m);
+        const world = new THREE.Matrix4().multiplyMatrices(obj.matrixWorld, m);
+        const g = geo.clone();
+        g.applyMatrix4(world);
+        bucket.geos.push(g);
+        instSamples++;
+      }
+      removeList.push(obj);
+    }
+  });
+
+  // 删除原实例网格
+  for (const o of removeList) { o.parent && o.parent.remove(o); }
+  p(`展开实例 ${instSamples} 个，按材质合并 ${buckets.size} 组…`);
+
+  // 合并每组几何
+  let mergedCount = 0, triTotal = 0;
+  for (const { mat, geos } of buckets.values()) {
+    if (!geos.length) continue;
+    const merged = mergeGeometries(geos, false);
+    if (!merged) { p('! 合并失败，跳过一组'); continue; }
+    const mesh = new THREE.Mesh(merged, mat);
+    mesh.name = 'veg_merged_' + mergedCount;
+    scene.add(mesh);
+    triTotal += merged.index ? merged.index.count / 3 : merged.attributes.position.count / 3;
+    mergedCount++;
+  }
+  p(`合并完成：${mergedCount} 个网格，约 ${Math.round(triTotal/1000)}k 三角面`);
+
+  // 统计整个场景三角面
+  let totalTris = 0;
+  scene.traverse(o => {
+    if (o.isMesh && o.geometry) {
+      totalTris += o.geometry.index ? o.geometry.index.count/3 : o.geometry.attributes.position.count/3;
+    }
+  });
+  p(`全场景约 ${Math.round(totalTris/1000)}k 三角面，开始导出…`);
+
+  const exporter = new GLTFExporter();
+  exporter.parse(
+    scene,
+    (result) => {
+      fetch('/save', { method: 'POST', body: result }).then(r => r.text()).then(t => {
+        p('saved: ' + t);
+      }).catch(e => p('POST fail: ' + e.message));
+    },
+    (err) => { p('export error: ' + err.message); console.error(err); },
+    { binary: true, onlyVisible: true }
+  );
+})();
+</script>
+</body>
+</html>

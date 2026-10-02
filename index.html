@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>滨海芦苇湿地 · 远眺重工业厂区 — 微缩三维景观</title>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #0d100e; }
+    #scene-container { position: fixed; inset: 0; }
+    canvas { display: block; }
+  </style>
+  <!-- 模块导入映射：three.js 本地化，离线可用 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="scene-container"></div>
+  <noscript>
+    <div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#8f9692;font-size:14px;font-family:sans-serif;background:#101312;">
+      需要启用 JavaScript 才能渲染三维场景。
+    </div>
+  </noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
